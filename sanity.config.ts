@@ -5,9 +5,10 @@ import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
 
 import {visionTool} from '@sanity/vision'
-import {colorInput} from '@sanity/color-input'
-import {imageHotspotArrayPlugin} from 'sanity-plugin-hotspot-array'
-import {media, mediaAssetSource} from 'sanity-plugin-media'
+// 移除不相容的插件 import
+// import {colorInput} from '@sanity/color-input'
+// import {imageHotspotArrayPlugin} from 'sanity-plugin-hotspot-array'
+// import {media, mediaAssetSource} from 'sanity-plugin-media'
 import {customDocumentActions} from './plugins/customDocumentActions'
 import Navbar from './components/studio/Navbar'
 
@@ -22,10 +23,11 @@ export default defineConfig({
 
   plugins: [
     structureTool({structure}),
-    colorInput(),
-    imageHotspotArrayPlugin(),
+    // 移除不相容的插件
+    // colorInput(),
+    // imageHotspotArrayPlugin(),
     customDocumentActions(),
-    media(),
+    // media(),
     ...(isDev ? devOnlyPlugins : []),
   ],
 
@@ -33,18 +35,19 @@ export default defineConfig({
     types: schemaTypes,
   },
 
-  form: {
-    file: {
-      assetSources: (previousAssetSources) => {
-        return previousAssetSources.filter((assetSource) => assetSource !== mediaAssetSource)
-      },
-    },
-    image: {
-      assetSources: (previousAssetSources) => {
-        return previousAssetSources.filter((assetSource) => assetSource === mediaAssetSource)
-      },
-    },
-  },
+  // 移除 media 相關的 form 設定
+  // form: {
+  //   file: {
+  //     assetSources: (previousAssetSources) => {
+  //       return previousAssetSources.filter((assetSource) => assetSource !== mediaAssetSource)
+  //     },
+  //   },
+  //   image: {
+  //     assetSources: (previousAssetSources) => {
+  //       return previousAssetSources.filter((assetSource) => assetSource === mediaAssetSource)
+  //     },
+  //   },
+  // },
 
   studio: {
     components: {
